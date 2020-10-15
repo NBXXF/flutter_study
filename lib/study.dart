@@ -109,8 +109,13 @@ void main() {
     print(a);
   }
 
-  for (var i = 0; i < list3.length; i++)
-  {
+  for (var i = 0; i < list3.length; i++) {
     print(list3[i]["title"]);
+  }
+
+  var index = 0;
+  while (index <= 10) {
+    print("index$index");
+    index++;
   }
 }
