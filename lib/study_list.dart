@@ -39,10 +39,12 @@ void main()
   list.fillRange(1,3, 9);//将index=1和index=2的值替换为9 [1, 4, 6, 7]=>[1, 9, 9, 7]
   print(list);//[1, 9, 9, 7]
 
+  print(list.map((e) => e*2).toList());
 
   Set set=new Set();
   set.add("苹果");
   set.add("苹果");
   set.add("三星");
   print(set);
+
 }

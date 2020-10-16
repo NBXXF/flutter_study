@@ -4,7 +4,30 @@ void main() {
   print(printUserInfo2("张三"));//name:张三
   print(printUserInfo3("李四"));//name:李四 age:88
   print(printUserInfo4("王五",age: 21,desc: "我是一个美女"));
-  print(printUserInfo5(printUserInfo("张三", 25)));//name:王五 age:21 我是一个美女
+  //print(printUserInfo5(printUserInfo("张三", 25)));//name:王五 age:21 我是一个美女
+
+
+  /**
+   * 箭头函数
+   */
+  var list=[1,2,4,6];
+  var list2 = list.map((e) => e*2).toList();
+  print(list2);//[2, 4, 8, 12]
+
+
+  /**
+   * 匿名函数
+   */
+  var noNameFun=(){
+    return "hello";
+  };
+  print(noNameFun());
+
+
+  /**
+   * 自执行方法
+   */
+  (){ print("这是一个自执行方法");}();//输出 这是一个自执行方法
 }
 
 String printUserInfo(String name, int age) {
