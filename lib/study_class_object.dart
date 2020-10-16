@@ -14,6 +14,24 @@ void main() {
   print(student.age); //通过get方法可以获取对应属性//输出 23
   student.age = 13; //是通过set方法赋值
   print(student); //输出:Student{name: 王五, _age: 13}
+
+  print(new Child("child name", 19));
+}
+
+class Parent{
+  String name;
+  Parent(this.name);
+}
+class Child extends Parent{
+  int age;
+  Child(String name,int age) : super(name){
+    this.age=age;
+  }
+
+  @override
+  String toString() {
+    return 'Child{age: $age} ${this.age}';
+  }
 }
 
 class Person {
