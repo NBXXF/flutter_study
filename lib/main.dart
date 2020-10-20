@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -5,133 +6,176 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    // return new MaterialApp(title: "首页", home: HomeContent());
+    //return new MaterialApp(title: "首页", home: ImageContent());
+    //return new MaterialApp(title: "首页", home: CircleImageContent());
+    //  return new MaterialApp(title: "首页", home: ClipOvalContent());
+    // return new MaterialApp(title: "首页", home: LocalImageContent());
+    // return new MaterialApp(title: "listView", home: ListViewListTileContent());
+    return new MaterialApp(title: "自定义listView item",home: CustomListViewContent());
+  }
+}
+
+class CustomListViewContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: ListView(
+        reverse: true,
+        padding: EdgeInsets.all(10),
+        children: [
+          Image.network(
+              "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1365563952,1327431768&fm=26&gp=0.jpg"),
+          Container(height: 10),//占位,起分割作用
+          Image.network(
+              "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1930662946,3376692344&fm=26&gp=0.jpg"),
+          Container(height: 10),
+          Image.network(
+              "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3353166494,2700282750&fm=26&gp=0.jpg")
+        ],
       ),
-      home: MyHomePage(title: '小旋风博客论坛'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  var age="xxx";
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-  _getListData() {
-    List<Widget> widgets = [];
-    for (int i = 0; i < 5; i++) {
-      widgets.add(new Padding(padding: new EdgeInsets.all(10.0), child: new Text("Row $i")));
-    }
-    return widgets;
-  }
+class ListViewListTileContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        centerTitle: true,
-        title: Text(widget.title),
+    return new Scaffold(
+        body: new ListView(children: <Widget>[
+      ListTile(
+          title: Text("title"),
+          subtitle: Text("subTitle"),
+          leading: Icon(
+            Icons.inbox,
+            size: 40,
+          )),
+      ListTile(
+          title: Text("title1"),
+          subtitle: Text("subTitle1"),
+          leading: Icon(
+            Icons.search,
+            size: 20,
+          )),
+      ListTile(
+          title: Text("title2"),
+          subtitle: Text("subTitle2"),
+          leading: Icon(
+            Icons.tab,
+            size: 30,
+          )),
+      ListTile(
+          title: Text("title3"),
+          subtitle: Text("subTitle3"),
+          leading: Icon(Icons.sanitizer)),
+      ListTile(
+          title: Text("title4"),
+          subtitle: Text("subTitle4"),
+          leading: Icon(Icons.inbox))
+    ]));
+  }
+}
+
+class LocalImageContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Center(
+        child: new Container(
+      width: 200,
+      height: 300,
+      child: Image.asset("images/timg.jpg"),
+    ));
+  }
+}
+
+class ClipOvalContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Center(
+        child: new Container(
+            width: 200,
+            height: 200,
+            child: new ClipOval(
+                child: Image.network(
+              "http://dwz.date/cSNt",
+              fit: BoxFit.cover,
+            ))));
+  }
+}
+
+class CircleImageContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Center(
+        child: new Container(
+            width: 200,
+            height: 200,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.blue,
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: Image.network(
+                            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603174658176&di=752704c8a2c730ec183014c70ab21397&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201308%2F23%2F220651x9b0h4kru904ozre.jpg")
+                        .image))));
+  }
+}
+
+class ImageContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Center(
+        child: new Container(
+      decoration: BoxDecoration(color: Colors.yellow),
+      width: 200,
+      height: 200,
+      padding: EdgeInsets.all(20),
+      child: new Image.network(
+        "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3022430276,1439132295&fm=26&gp=0.jpg",
+        alignment: Alignment.bottomRight,
+        color: Colors.yellow, //类似Android:tint着色
+        colorBlendMode: BlendMode.screen,
+        fit: BoxFit.cover,
       ),
-      // body: Center(
-      //   // Center is a layout widget. It takes a single child and positions it
-      //   // in the middle of the parent.
-      //   child: Column(
-      //     // Column is also a layout widget. It takes a list of children and
-      //     // arranges them vertically. By default, it sizes itself to fit its
-      //     // children horizontally, and tries to be as tall as its parent.
-      //     //
-      //     // Invoke "debug painting" (press "p" in the console, choose the
-      //     // "Toggle Debug Paint" action from the Flutter Inspector in Android
-      //     // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-      //     // to see the wireframe for each widget.
-      //     //
-      //     // Column has various properties to control how it sizes itself and
-      //     // how it positions its children. Here we use mainAxisAlignment to
-      //     // center the children vertically; the main axis here is the vertical
-      //     // axis because Columns are vertical (the cross axis would be
-      //     // horizontal).
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: <Widget>[
-      //
-      //       Text(_counter % 2 == 0 ? "偶数" : "奇数",
-      //           style: new TextStyle(fontWeight: FontWeight.bold)),
-      //      // Scaffold(body: new ListView(children: _getListData()),),
-      //       Text("age=$age",
-      //           style: new TextStyle(
-      //               fontWeight: FontWeight.bold,
-      //               color: Colors.red,
-      //               fontSize: 28,
-      //               backgroundColor: Colors.black12)),
-      //       Text(
-      //         'You have pushed the button this many times:',
-      //       ),
-      //       Text(
-      //         '$_counter',
-      //         style: Theme.of(context).textTheme.headline4,
-      //       ),
-      //
-      //     ],
-      //   ),
-      // ),
-      body:new ListView(children:_getListData()),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    ));
+  }
+}
+
+class HomeContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: new AppBar(title: new Text("hello")),
+        body: Center(
+            child: new Container(
+                child: new Text(
+                  "welcome to beigin,或胡姬花规定和规范的后果符合规定和规范化规定",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 34,
+                      decoration: TextDecoration.lineThrough,
+                      decorationColor: Colors.red,
+                      letterSpacing: 2.0,
+                      decorationStyle: TextDecorationStyle.dotted),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                width: 300,
+                //容器宽度
+                height: 300,
+                //容器高度
+                padding: EdgeInsets.all(10),
+                //控制子元素的位置,如居中
+                alignment: Alignment.bottomCenter,
+                //对容器进行变换,如位移
+                transform: Matrix4.translationValues(50, 0, 0),
+                //设置边距；单独设置某个边: EdgeInsets.fromLTRB(0,10,0,0)
+                decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(8)), //边框圆角
+                    color: Colors.yellow, //容器背景
+                    border: Border.all(
+                        color: Colors.blue, width: 2))))); //边框大小和颜色设置
   }
 }
