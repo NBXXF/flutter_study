@@ -4,6 +4,8 @@ import './const/ListData.dart' as ListData;
 import './tabs/HomeTab.dart';
 import './tabs/NewsTab.dart';
 import './tabs/MineTab.dart';
+import './chat/ChatRoomPage.dart';
+import './const/Routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +14,15 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(title: "Stack", home: HomeContent());
+    return new MaterialApp(
+        title: "Stack",
+        home: HomeContent(),
+        initialRoute: "/",
+        onGenerateRoute: myOnGenerateRoutes,
+    /*    routes: {
+          "/chatRoomPage": (BuildContext context) => ChatRoomPage(),
+        }*/
+        );
   }
 }
 
@@ -22,7 +32,7 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
-  List<Widget> tabWidget = [HomeTab(),NewsTab(),MineTab()];
+  List<Widget> tabWidget = [HomeTab(), NewsTab(), MineTab()];
   int currentTab = 0;
 
   @override
@@ -38,7 +48,7 @@ class _HomeContentState extends State<HomeContent> {
         /**
          * 未选中颜色
          */
-        unselectedItemColor:Colors.blue,
+        unselectedItemColor: Colors.blue,
         /**
          * 当前tab索引
          */
@@ -52,9 +62,9 @@ class _HomeContentState extends State<HomeContent> {
           });
         },
         items: [
-          BottomNavigationBarItem(label: "首页",icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: "聊天",icon: Icon(Icons.search)),
-          BottomNavigationBarItem(label: "我的",icon: Icon(Icons.settings))
+          BottomNavigationBarItem(label: "首页", icon: Icon(Icons.home)),
+          BottomNavigationBarItem(label: "聊天", icon: Icon(Icons.search)),
+          BottomNavigationBarItem(label: "我的", icon: Icon(Icons.settings))
         ],
       ),
     );
