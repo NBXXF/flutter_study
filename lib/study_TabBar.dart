@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MineTab extends StatefulWidget {
+class TabBarPage extends StatefulWidget {
   @override
-  _MineTabState createState() => _MineTabState();
+  _TabBarPageState createState() => _TabBarPageState();
+
+  Map argments;
+
+  TabBarPage({this.argments});
 }
 
-class _MineTabState extends State<MineTab> {
+class _TabBarPageState extends State<TabBarPage> {
   List<Tab> tabs = [
     Tab(text: "中国"),
     Tab(text: "推荐"),
@@ -25,20 +29,15 @@ class _MineTabState extends State<MineTab> {
         child: Scaffold(
           appBar: AppBar(
             title: TabBar(
-              tabs: tabs,
               isScrollable: true,
-            ),
-            bottom: TabBar(
               tabs: tabs,
-              isScrollable: true,
             ),
           ),
           body: TabBarView(
-            children: tabs.map((Tab tab) {
-              return Text(tab.text);
+            children: tabs.map((Tab e) {
+              return Text(e.text);
             }).toList(),
           ),
         ));
-    return Container(child: Text("我的"));
   }
 }

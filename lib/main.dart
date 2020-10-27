@@ -15,14 +15,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-        title: "Stack",
-        home: HomeContent(),
-        initialRoute: "/",
-        onGenerateRoute: myOnGenerateRoutes,
-    /*    routes: {
+      /**
+       * 去掉右上角的debug图标
+       */
+      debugShowCheckedModeBanner: false,
+      title: "Stack",
+      home: HomeContent(),
+      initialRoute: "/",
+      onGenerateRoute: myOnGenerateRoutes,
+      /*    routes: {
           "/chatRoomPage": (BuildContext context) => ChatRoomPage(),
         }*/
-        );
+    );
   }
 }
 
@@ -38,7 +42,21 @@ class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("导航")),
+      appBar: AppBar(
+        title: Text("导航"),
+        /**
+         * 标题居中
+         */
+        centerTitle: true,
+        /**
+         * icon button是包裹icon组件 且有点击事件的容器
+         */
+        leading: IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => {Navigator.pop(context)},
+        ),
+        actions: [Icon(Icons.add), Icon(Icons.search)],
+      ),
       body: tabWidget[currentTab],
       bottomNavigationBar: BottomNavigationBar(
         /**
